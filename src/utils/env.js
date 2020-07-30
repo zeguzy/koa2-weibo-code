@@ -7,7 +7,7 @@ let ENV = process.env.NODE_ENV
 
 module.exports = {
     isDev: ENV === 'dev',
-    notDev: Evn !== 'dev',
+    notDev: ENV !== 'dev',
     isPrd: ENV === 'production',
     notPrd: ENV !== 'production',
 }
