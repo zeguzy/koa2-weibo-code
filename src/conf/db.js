@@ -3,22 +3,41 @@
  * @author zegu
  *
  */
-const { isDev } = require('../utils/env')
+const { isPrd } = require('../utils/env')
+/**
+ * @description redis 配置
+ */
+let REDIS_CONF = {
+    port: 6379,
+    host: '127.0.0.1'
+}
 
-if (isDev) {
+/**
+ * @description mysql 配置
+ */
+let MYSQL_CONF = {
+    host: 'localhost',
+    dialect: 'mariadb'
+}
+
+if (isPrd) {
     REDIS_CONF = {
         port: 6379,
         host: '127.0.0.1'
     }
-} else {
-    REDIS_CONF = {
+
+    MYSQL_CONF = {
         port: 6379,
-        host: '127.0.0.1'
+        host: '127.0.0.1',
+        user:'root',
+        password:'159623',
+        database:'koa2_weibo_db'
     }
 }
 
 
 
 module.exports = {
-    REDIS_CONF
+    REDIS_CONF,
+    MYSQL_CONF
 }
