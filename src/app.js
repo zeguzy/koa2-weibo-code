@@ -7,13 +7,24 @@ const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const session = require('koa-generic-session')
 const redisStore = require('koa-redis')
+const {isPrd}=require('./utils/env')
 
 const { REDIS_CONF } = require('./conf/db')
 const index = require('./routes/index')
 const users = require('./routes/users')
+const errorViewRouter = require('./routes/view/err')
+
+
+let ERR_CONF = {}
+if(isPrd){
+    ERR_CONF = {
+        redirect:'/error'
+    }
+}
+
 
 // error handler
-onerror(app)
+onerror(app,ERR_CONF)
 
 // middlewares
 app.use(bodyparser({
@@ -55,6 +66,7 @@ app.use(session({
     })
 }))
 
+// console.log('开始 debugger')
 
 // logger
 // app.use(async (ctx, next) => {
@@ -67,7 +79,7 @@ app.use(session({
 // routes
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
-
+app.use(errorViewRouter.routes(),errorViewRouter.allowedMethods())   //404注册到最后面
 // error-handling
 app.on('error', (err, ctx) => {
     console.error('server error', err, ctx)
