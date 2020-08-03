@@ -3,14 +3,14 @@
  */
 
 const seq = require('./seq')
-// require('./model')
+require('./model/index')
 
-//测试连接
-seq.authenticate().then(()=>{
-    console.log('oK')
-}).catch(()=>{
-    console.log('err')
-})
+// //测试连接
+// seq.authenticate().then(()=>{
+//     console.log('oK')
+// }).catch(()=>{
+//     console.log('err')
+// })
 
 //执行同步
 seq.sync().then(()=>{

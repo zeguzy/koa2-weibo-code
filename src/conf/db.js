@@ -15,10 +15,16 @@ let REDIS_CONF = {
 /**
  * @description mysql 配置
  */
-let MYSQL_CONF = {
-    host: 'localhost',
-    dialect: 'mariadb'
-}
+let
+    MYSQL_CONF = {
+        port: 6379,
+        host: '127.0.0.1',
+        user:'root',
+        password:'159623',
+        database:'koa2_weibo_db'
+    }
+
+// console.log('isPrd...',isPrd)
 
 if (isPrd) {
     REDIS_CONF = {
