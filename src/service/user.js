@@ -7,6 +7,7 @@
 
 const {User} = require('../db/model/index')
 const formateUser = require('./__formate')
+const user = require('../controller/user')
 /**
  * 
  * @param {String} username 用户名
@@ -34,4 +35,23 @@ async function getUserInfo(username,password){
     return formatRes
 }
 
-module.exports = {getUserInfo}
+
+/**
+ *
+ * @param {String} userName
+ * @param {String} password
+ * @param {String} nickName
+ * @param {number} gender
+ */
+async function createUser({userName,password,gender=3,nickName}){
+    console.log('createUser...',userName,password,gender,nickName)
+    const result = await User.create({
+        userName,
+        password,
+        gender,
+        nickName:nickName?nickName: userName
+    })
+
+}
+
+module.exports = {getUserInfo,createUser}

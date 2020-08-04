@@ -2,9 +2,9 @@
  * @description user controller
  * @author zegu
  */
-const {getUserInfo,}=require('../service/user')
+const {getUserInfo,createUser}=require('../service/user')
 const  {SuccessModel,ErrorModel} = require('../model/ResultModel')
-const {registerUserNameNotExistInfo}=require('../model/ErrorList')
+const {registerUserNameNotExistInfo,UserNameIsExistInfo,registerFalid}=require('../model/ErrorList')
 
 /**
  * 
@@ -20,6 +20,24 @@ async function isExist (username){
     return new ErrorModel(registerUserNameNotExistInfo)
 }
 
+async function register ({userName,password,gender}){
+    const result = await getUserInfo(userName)
+    if(result){
+        //用户名已存在
+        return new ErrorModel(UserNameIsExistInfo)
+    }
+
+    //注册
+    try{
+        createUser({userName,password,gender})
+        return new SuccessModel({})
+    }catch(err){
+        console.error(err)
+        return new ErrorModel(registerFalid)
+    }
+}
+
 module.exports = {
     isExist,
+    register
 }
