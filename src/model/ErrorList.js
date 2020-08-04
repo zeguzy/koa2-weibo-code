@@ -5,7 +5,7 @@
 
 module.exports = {
     registerUserNameNotExistInfo:{
-        errno:1003,
+        errno:10003,
         msg:'用户名未存在'
     }
 }

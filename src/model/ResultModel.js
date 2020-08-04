@@ -9,7 +9,7 @@ class BaseModel{
             this.data=data
         }
         if(msg){
-            this.data=data
+            this.msg=msg
         }
     }
 }

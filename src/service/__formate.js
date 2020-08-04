@@ -15,7 +15,7 @@ function _formateUserPicture(obj){
     return obj
 }
 /**
- *
+ *@description 格式化用户数组，或者对象
  * @param {Array | Object } list 用户数组对象 或者 单个用户
  */
 function formateUser(list){
