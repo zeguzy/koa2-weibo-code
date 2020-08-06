@@ -24,5 +24,9 @@ module.exports = {
     userNotExistError:{
         errno:10004,
         msg:'登录失败用户名或密码错误'
-    }
+    },
+    loginCheckFailInfo:{
+        errno:10005,
+        msg:'用户未登录'
+    },
 }
