@@ -16,5 +16,13 @@ module.exports = {
     registerFalid:{
         errno:10002,
         msg:'注册失败'
+    },
+    jsonSchemaFiledInfo:{
+        errno:10009,
+        msg:'数据验证失败'
+    },
+    userNotExistError:{
+        errno:10004,
+        msg:'登录失败用户名或密码错误'
     }
 }

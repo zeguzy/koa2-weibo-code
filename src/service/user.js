@@ -32,6 +32,7 @@ async function getUserInfo(username,password){
 
     //格式化
     const formatRes = formateUser(result.dataValues)
+    console.log('userInfo....',formatRes)
     return formatRes
 }
 
@@ -45,12 +46,13 @@ async function getUserInfo(username,password){
  */
 async function createUser({userName,password,gender=3,nickName}){
     console.log('createUser...',userName,password,gender,nickName)
-    const result = await User.create({
+    await User.create({
         userName,
         password,
         gender,
         nickName:nickName?nickName: userName
     })
+    // return result
 
 }
 
