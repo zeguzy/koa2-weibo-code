@@ -9,7 +9,7 @@ const {User} = require('../db/model/index')
 const formateUser = require('./__formate')
 const user = require('../controller/user')
 /**
- * 
+ *获取用户信息
  * @param {String} username 用户名
  * @param {String} password 密码
  */
@@ -32,7 +32,7 @@ async function getUserInfo(username,password){
 
     //格式化
     const formatRes = formateUser(result.dataValues)
-    console.log('userInfo....',formatRes)
+    // console.log('userInfo....',formatRes)
     return formatRes
 }
 
@@ -55,5 +55,17 @@ async function createUser({userName,password,gender=3,nickName}){
     // return result
 
 }
+async function deleteUser(userName) {
+    const result= await  User.destroy({
+        where:{
+            userName
+        }
+    })
+    return result>0
+}
 
-module.exports = {getUserInfo,createUser}
+module.exports = {
+    getUserInfo,
+    createUser,
+    deleteUser
+}

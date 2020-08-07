@@ -2,12 +2,13 @@
  * @description user controller
  * @author zegu
  */
-const {getUserInfo,createUser}=require('../service/user')
+const {getUserInfo,createUser,deleteUser}=require('../service/user')
 const  {SuccessModel,ErrorModel} = require('../model/ResultModel')
 const {
     registerUserNameNotExistInfo,
     UserNameIsExistInfo,
     registerFalid,
+    deleteUserFailInfo,
     userNotExistError}=require('../model/ErrorList')
 const doCrypto = require('../utils/crypto')
 /**
@@ -59,11 +60,23 @@ async function login(ctx,userName,password){
     }
     const {nickName,city,picture,gender} = result
     ctx.session.userInfo = {userName,nickName,city,picture,gender}
-    return new SuccessModel()
+    return new SuccessModel({})
 }
 
+/**
+ * 删除用户
+ * @param {String} userName yhm
+ */
+async function deleteCurUser(userName) {
+    const result = await deleteUser(userName)
+    if(result){
+        return new SuccessModel({})
+    }
+    return new ErrorModel(deleteUserFailInfo)
+}
 module.exports = {
     isExist,
     register,
-    login
+    login,
+    deleteCurUser
 }

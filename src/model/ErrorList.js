@@ -29,4 +29,8 @@ module.exports = {
         errno:10005,
         msg:'用户未登录'
     },
+    deleteUserFailInfo:{
+        errno:10010,
+        msg:'删除用户失败'
+    },
 }
