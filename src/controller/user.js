@@ -3,7 +3,7 @@
  * @author zegu
  */
 const {getUserInfo,createUser,deleteUser}=require('../service/user')
-const  {SuccessModel,ErrorModel} = require('../model/ResultModel')
+const {SuccessModel,ErrorModel} = require('../model/ResultModel')
 const {
     registerUserNameNotExistInfo,
     UserNameIsExistInfo,

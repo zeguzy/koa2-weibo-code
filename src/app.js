@@ -7,26 +7,29 @@ const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const session = require('koa-generic-session')
 const redisStore = require('koa-redis')
-const {isPrd}=require('./utils/env')
+const koa_static = require('koa-static')
+const path = require('path')
 
+const { isPrd } = require('./utils/env')
 const { REDIS_CONF } = require('./conf/db')
-const {SESSION_SECRET_KEY} = require('./conf/secretKeys')
+const { SESSION_SECRET_KEY } = require('./conf/secretKeys')
 const index = require('./routes/index')
 const errorViewRouter = require('./routes/view/err')
 const user = require('./routes/view/user')
-const userApi= require('./routes/api/user')
+const userApi = require('./routes/api/user')
+const utilsApi = require('./routes/api/utils')
 
 
 let ERR_CONF = {}
-if(isPrd){
+if (isPrd) {
     ERR_CONF = {
-        redirect:'/error'
+        redirect: '/error'
     }
 }
 
 
 // error handler
-onerror(app,ERR_CONF)
+onerror(app, ERR_CONF)
 
 // middlewares
 app.use(bodyparser({
@@ -34,7 +37,9 @@ app.use(bodyparser({
 }))
 app.use(json())
 app.use(logger())
-app.use(require('koa-static')(__dirname + '/public'))
+app.use(koa_static(__dirname + '/public'))
+app.use(koa_static(path.join(__dirname, '..', 'uploadFiles')))
+
 
 app.use(views(__dirname + '/views', {
     extension: 'ejs'
@@ -80,9 +85,10 @@ app.use(session({
 
 // routes
 app.use(index.routes(), index.allowedMethods())
-app.use(user.routes(),user.allowedMethods())
-app.use(userApi.routes(),userApi.allowedMethods())
-app.use(errorViewRouter.routes(),errorViewRouter.allowedMethods())   //404注册到最后面
+app.use(user.routes(), user.allowedMethods())
+app.use(userApi.routes(), userApi.allowedMethods())
+app.use(utilsApi.routes(), utilsApi.allowedMethods())
+app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods())   //404注册到最后面
 // error-handling
 app.on('error', (err, ctx) => {
     console.error('server error', err, ctx)

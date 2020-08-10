@@ -20,7 +20,7 @@ let
         port: 6379,
         host: '127.0.0.1',
         user:'root',
-        password:'159623',
+        password:'123456',
         database:'koa2_weibo_db'
     }
 

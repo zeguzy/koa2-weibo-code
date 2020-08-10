@@ -3,5 +3,5 @@
  * @author zegu
  */
 module.exports = {
-    DEFAULT_PICTURE : 'https://dwz.cn/rnTnftZs'
+    DEFAULT_PICTURE : 'images/head.jpg'
 }
