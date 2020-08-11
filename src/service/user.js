@@ -5,29 +5,30 @@
  * @author zegu
  */
 
-const {User} = require('../db/model/index')
+const { User } = require('../db/model/index')
 const formateUser = require('./__formate')
-const user = require('../controller/user')
+const doCrypto = require('../utils/crypto')
+
 /**
  *获取用户信息
  * @param {String} username 用户名
  * @param {String} password 密码
  */
-async function getUserInfo(username,password){
+async function getUserInfo(username, password) {
     //查询条件
     const whereOpt = {
-        userName:username
+        userName: username
     }
-    if(password){
-        Object.assign(whereOpt,{password})
+    if (password) {
+        Object.assign(whereOpt, { password })
     }
     //查询
     const result = await User.findOne({
-        attribute:['id','nickName','userName','gender','city','picture'],
-        where:whereOpt
+        attribute: ['id', 'nickName', 'userName', 'gender', 'city', 'picture'],
+        where: whereOpt
     })
-    if(result==null){
-        return  result
+    if (result == null) {
+        return result
     }
 
     //格式化
@@ -44,28 +45,62 @@ async function getUserInfo(username,password){
  * @param {String} nickName
  * @param {number} gender
  */
-async function createUser({userName,password,gender=3,nickName}){
-    console.log('createUser...',userName,password,gender,nickName)
+async function createUser({ userName, password, gender = 3, nickName }) {
+    console.log('createUser...', userName, password, gender, nickName)
     await User.create({
         userName,
         password,
         gender,
-        nickName:nickName?nickName: userName
+        nickName: nickName ? nickName : userName
     })
     // return result
 
 }
 async function deleteUser(userName) {
-    const result= await  User.destroy({
-        where:{
+    const result = await User.destroy({
+        where: {
             userName
         }
     })
-    return result>0
+    return result > 0
+}
+
+/**
+ * 
+ * @param {object} param0 要修改的内容 newNickName, newCity, newPicture, newPassword
+ * @param {object} param1 要查询的条件 userName, password
+ */
+async function updataUser({ newNickName, newCity, newPicture, newPassword }, { userName, password }) {
+    const updateData = {}
+    if (newNickName) {
+        updateData.nickName = newNickName
+    }
+    if (newCity) {
+        updateData.city = newCity
+    }
+    if (newPicture) {
+        updateData.picture = newPicture
+    }
+    if (newPassword) {
+        updateData.password = doCrypto(newPassword)
+    }
+
+    const updataWhere = {}
+
+    if (userName) {
+        updataWhere.userName = userName
+    }
+    if (password) {
+        updataWhere.password = password
+    }
+
+    const result = await User.update(updateData, { where: updataWhere })
+    return result[0] > 0
 }
 
 module.exports = {
     getUserInfo,
     createUser,
-    deleteUser
+    deleteUser,
+    updataUser
 }

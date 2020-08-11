@@ -37,4 +37,8 @@ module.exports = {
         errno: 10007,
         msg: '文件上传尺寸过大'
     },
+    changeUserFailInfo: {
+        errno: 10008,
+        msg: '用户信息修改失败'
+    }
 }
