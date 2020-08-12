@@ -7,6 +7,11 @@ const seq = require('../seq')
 const { TEXT, STRING, INTEGER } = require('../type')
 
 const Blog = seq.define('blog', {
+    id: {
+        type: INTEGER,
+        primaryKey: true,
+        'autoIncrement': true
+    },
     userId: {
         type: INTEGER,
         allowNull: false,
@@ -21,7 +26,6 @@ const Blog = seq.define('blog', {
     content: {
         type: TEXT,
         allowNull: false,
-        unique: true,
         comment: '内容'
     }
 })

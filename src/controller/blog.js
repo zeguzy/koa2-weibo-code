@@ -8,6 +8,8 @@ const {
 } = require('../service/blog')
 const { SuccessModel, ErrorModel } = require('../model/ResultModel')
 const { createBlogFailInfo } = require('../model/ErrorList')
+const xss = require('xss')
+
 /**
  * 处理新建博客的业务逻辑
  * @param {object} param0 userId, content, image 
@@ -15,10 +17,11 @@ const { createBlogFailInfo } = require('../model/ErrorList')
 async function create({ userId, content, image }) {
     //调用sevice
     try {
-        const result = createBlog({ userId, content, image })
+        const result = await createBlog({ userId, content: xss(content), image })
         return new SuccessModel(result)
     } catch (ex) {
-        console.error(ex.message, ex.stack)
+        // console.error(ex.message, ex.stack)
+        console.log(ex)
         return new ErrorModel(createBlogFailInfo)
     }
 }
