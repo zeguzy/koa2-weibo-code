@@ -13,7 +13,9 @@ require('./model/index')
 // })
 
 //执行同步
-seq.sync().then(()=>{
+seq.sync({ force: true }).then(() => {
     console.log('sync ok')
     process.exit
+}).catch(err => {
+    console.log(err)
 })
