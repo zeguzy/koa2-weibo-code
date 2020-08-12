@@ -1,3 +1,8 @@
+/**
+ * 博客用户路由
+ * @author zegu
+ */
+
 const router = require('koa-router')()
 const { loginCheck, loginRedirect } = require('../../middlewares/loginChecks')
 

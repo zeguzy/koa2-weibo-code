@@ -18,6 +18,8 @@ const errorViewRouter = require('./routes/view/err')
 const user = require('./routes/view/user')
 const userApi = require('./routes/api/user')
 const utilsApi = require('./routes/api/utils')
+const blogViewAPI = require('./routes/view/blog')
+const blogsApi = require('./routes/api/blog')
 
 
 let ERR_CONF = {}
@@ -88,6 +90,8 @@ app.use(index.routes(), index.allowedMethods())
 app.use(user.routes(), user.allowedMethods())
 app.use(userApi.routes(), userApi.allowedMethods())
 app.use(utilsApi.routes(), utilsApi.allowedMethods())
+app.use(blogViewAPI.routes(), blogViewAPI.allowedMethods())
+app.use(blogsApi.routes(), blogsApi.allowedMethods())
 app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods())   //404注册到最后面
 // error-handling
 app.on('error', (err, ctx) => {

@@ -40,5 +40,9 @@ module.exports = {
     changeUserFailInfo: {
         errno: 10008,
         msg: '用户信息修改失败'
+    },
+    createBlogFailInfo: {
+        errno: 10002,
+        msg: '用户博客添加失败'
     }
 }
