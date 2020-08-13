@@ -18,6 +18,7 @@ async function create({ userId, content, image }) {
     //调用sevice
     try {
         const result = await createBlog({ userId, content: xss(content), image })
+        console.log('result ....', result)
         return new SuccessModel(result)
     } catch (ex) {
         // console.error(ex.message, ex.stack)
