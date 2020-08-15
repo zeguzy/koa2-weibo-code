@@ -3,5 +3,6 @@
  * @author zegu
  */
 module.exports = {
-    DEFAULT_PICTURE : 'images/head.jpg'
+    DEFAULT_PICTURE: 'images/head.jpg',
+    PAGE_SIZE: 5
 }

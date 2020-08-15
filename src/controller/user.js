@@ -15,10 +15,10 @@ const {
 const doCrypto = require('../utils/crypto')
 /**
  * 判断用户是否存在
- * @param {String} username 用户名
+ * @param {String} userName 用户名
  */
-async function isExist(username) {
-    const result = await getUserInfo(username)
+async function isExist(userName) {
+    const result = await getUserInfo(userName)
     if (result) {
         return new SuccessModel({ data: result })
     }
@@ -65,6 +65,7 @@ async function login(ctx, userName, password) {
         return new ErrorModel(userNotExistError)
     }
     const { nickName, city, picture, gender, id } = result
+    console.log(result)
     ctx.session.userInfo = { userName, nickName, city, picture, gender, userId: id }
     return new SuccessModel({})
 }

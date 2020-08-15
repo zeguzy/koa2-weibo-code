@@ -15,7 +15,7 @@ router.get('/json', loginCheck, async (ctx, next) => {
 })
 
 
-router.get('/profile/:username', async function (ctx, next) {
+router.get('/profile2/:username', async function (ctx, next) {
     const { username } = ctx.params
     ctx.body = {
         title: 'this is profile',

@@ -13,7 +13,6 @@ router.prefix('/api/blog')
 router.post('/create', loginCheck, genValidator(blogValidate), async (ctx, next) => {
     //调用controller
     const { content, image } = ctx.request.body
-    console.log(ctx.session.userInfo)
     ctx.body = await create({ userId: ctx.session.userInfo.userId, content, image })
 })
 

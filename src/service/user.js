@@ -6,7 +6,7 @@
  */
 
 const { User } = require('../db/model/index')
-const formateUser = require('./__formate')
+const { formateUser } = require('./__formate')
 const doCrypto = require('../utils/crypto')
 
 /**
@@ -14,14 +14,16 @@ const doCrypto = require('../utils/crypto')
  * @param {String} username 用户名
  * @param {String} password 密码
  */
-async function getUserInfo(username, password) {
+async function getUserInfo(userName, password) {
     //查询条件
     const whereOpt = {
-        userName: username
+        userName
     }
     if (password) {
         Object.assign(whereOpt, { password })
     }
+
+    console.log('service...', whereOpt)
     //查询
     const result = await User.findOne({
         attribute: ['id', 'nickName', 'userName', 'gender', 'city', 'picture'],
