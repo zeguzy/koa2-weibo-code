@@ -18,6 +18,8 @@
                     })%>
             </div> <!-- 微博列表 结束 -->
             <!-- 加载更多 -->
+
+
             <% if (blogData.count > blogData.blogList.length) { %>
             <%- include('widgets/load-more', {
                         pageSize: blogData.pageSize,

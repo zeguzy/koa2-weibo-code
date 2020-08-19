@@ -23,12 +23,12 @@ router.get('/profile2/:username', async function (ctx, next) {
     }
 })
 
-router.get('/loadMore/:username/:pageIndex', async function (ctx, next) {
-    const { username, pageIndex } = ctx.params
-    ctx.body = {
-        title: 'this is loadMore API',
-        username,
-        pageIndex
-    }
-})
+// router.get('/loadMore/:username/:pageIndex', async function (ctx, next) {
+//     const { username, pageIndex } = ctx.params
+//     ctx.body = {
+//         title: 'this is loadMore API',
+//         username,
+//         pageIndex
+//     }
+// })
 module.exports = router

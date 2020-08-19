@@ -20,6 +20,7 @@ async function getUserBlogList({ userName, pageIndex = 0 }) {
     const result = await getBlogListByUser({ userName, pageIndex, pageSize })
 
     const blogList = result.blogList
+    // console.log(result)
     if (!result) {
         return new ErrorModel()
     }
@@ -29,12 +30,14 @@ async function getUserBlogList({ userName, pageIndex = 0 }) {
         isEmpty: blogList.length == 0,
         blogList,
         pageSize,
-        pageIndex
+        pageIndex,
+        count: result.count
     })
 }
 
 
 
+
 module.exports = {
-    getUserBlogList
+    getUserBlogList,
 }

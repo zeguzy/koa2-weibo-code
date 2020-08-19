@@ -21,7 +21,7 @@ async function createBlog({ userId, content, image }) {
  * 
  * @param {object} param0 { userName, pageIndex = 0, pageSize = 10 }
  */
-async function getBlogListByUser({ userName, pageIndex = 0, pageSize = 10 }) {
+async function getBlogListByUser({ userName, pageIndex = 0, pageSize }) {
     //拼接查询条件
     const userWhereOpts = {}
     if (userName) {
