@@ -8,5 +8,6 @@
  * cookie是用户的敏感信息，此处只能是测试用户的信息
  */
 module.exports = {
-    COOKIE: 'weibo.sid.sig=-U2lt33wr1GBhltTJsw6J3WC92s; weibo.sid=8vP1YtHWjgUAjp2b2hhesUwEnLAEDL9C'
+    USER_NAME: 'zhangsan',
+    COOKIE: 'weibo.sid=jgJyCfu7j5f980rYEjGN3j66WLqTKRH0; weibo.sid.sig=CKLI6UTvrawYv_lwbJCeYPd_XDY'
 }
