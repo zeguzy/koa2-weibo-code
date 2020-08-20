@@ -31,7 +31,7 @@ function set(key, val, timeout = 60 * 60) {
  *
  * @param {string} get
  */
-function get(get) {
+function get(key) {
     const promise = new Promise((resole, reject) => {
         redisClient.get(key, (err, val) => {
             if (err) {
@@ -55,4 +55,4 @@ function get(get) {
     return promise
 }
 
-module.expire = { set, get }
+module.exports = { set, get }

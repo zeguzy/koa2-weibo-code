@@ -21,6 +21,7 @@ const utilsApi = require('./routes/api/utils')
 const blogViewAPI = require('./routes/view/blog')
 const blogsApi = require('./routes/api/blog-home')
 const blogsProfileoApi = require('./routes/api/blog-profile')
+const blogSquareApi = require('./routes/api/blog-square')
 
 
 let ERR_CONF = {}
@@ -88,6 +89,7 @@ app.use(session({
 
 // routes
 
+app.use(blogSquareApi.routes(), blogSquareApi.allowedMethods())
 app.use(blogsProfileoApi.routes(), blogsProfileoApi.allowedMethods())
 app.use(index.routes(), index.allowedMethods())
 app.use(user.routes(), user.allowedMethods())
