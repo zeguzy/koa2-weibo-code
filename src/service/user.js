@@ -23,7 +23,6 @@ async function getUserInfo(userName, password) {
         Object.assign(whereOpt, { password })
     }
 
-    console.log('service...', whereOpt)
     //查询
     const result = await User.findOne({
         attribute: ['id', 'nickName', 'userName', 'gender', 'city', 'picture'],
@@ -35,8 +34,9 @@ async function getUserInfo(userName, password) {
 
     //格式化
     const formatRes = formateUser(result.dataValues)
-    // console.log('userInfo....',formatRes)
-    return formatRes
+    // console.log('userInfo....', formatRes)
+    const { id, nickName, gender, city, picture } = formatRes
+    return { userId: id, nickName, userName, gender, city, picture }
 }
 
 

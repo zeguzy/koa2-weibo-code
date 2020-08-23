@@ -44,5 +44,13 @@ module.exports = {
     createBlogFailInfo: {
         errno: 10002,
         msg: '用户博客添加失败'
+    },
+    followErrorInfo: {
+        errno: 10020,
+        msg: '关注用户失败'
+    },
+    unfollowErrorInfo: {
+        errno: 10021,
+        msg: '取消关注用户失败'
     }
 }

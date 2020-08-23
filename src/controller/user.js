@@ -20,7 +20,7 @@ const doCrypto = require('../utils/crypto')
 async function isExist(userName) {
     const result = await getUserInfo(userName)
     if (result) {
-        return new SuccessModel({ data: result })
+        return new SuccessModel(result)
     }
 
     //用户名未村在

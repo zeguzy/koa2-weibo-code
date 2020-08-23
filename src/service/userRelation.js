@@ -36,6 +36,32 @@ async function getUsersByFollower(followerId) {
     }
 }
 
+/**
+ * 插入新关系
+ * @param {int}} followerId 
+ * @param {int} userId 
+ */
+async function insertRelation(followerId, userId) {
+    const result = await UserRelation.create({
+        followerId, userId
+    })
+}
+
+
+/**
+ * 删除关系
+ * @param {int}} followerId 
+ * @param {int} userId 
+ */
+async function deleteRelation(followerId, userId) {
+    await UserRelation.destroy({
+        where: {
+            followerId, userId
+        }
+    })
+}
 module.exports = {
-    getUsersByFollower
+    getUsersByFollower,
+    insertRelation,
+    deleteRelation
 }
