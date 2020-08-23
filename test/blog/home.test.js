@@ -6,7 +6,7 @@ const server = require('../server')
 
 const image = '/test.png'
 const content = `test 文章内容.${Date.now()}`
-const { COOKIE } = require('../testUserInfo')
+const { COOKIE_1 } = require('../testUserInfo')
 
 let BLOG_ID = ''
 test('新建一片博客应该成功', async () => {
@@ -15,7 +15,7 @@ test('新建一片博客应该成功', async () => {
         .send({
             image,
             content
-        }).set('cookie', COOKIE)
+        }).set('cookie', COOKIE_1)
 
     expect(res.body.errno).toBe(0)
     expect(res.body.data.image).toBe(image)

@@ -2,7 +2,7 @@
  * 用户关系 业务逻辑
  * @author zegu
  */
-const { getUsersByFollower } = require('../service/userRelation')
+const { getUsersByFollower, getFollowersByUser } = require('../service/userRelation')
 const { SuccessModel, ErrorModel } = require('../model/ResultModel')
 const { insertRelation, deleteRelation } = require('../service/userRelation')
 const { followErrorInfo, unfollowErrorInfo } = require('../model/ErrorList')
@@ -13,6 +13,18 @@ const { followErrorInfo, unfollowErrorInfo } = require('../model/ErrorList')
 async function getFans(userId) {
     //service
     const { count, userList } = await getUsersByFollower(userId)
+    return new SuccessModel({
+        count, userList
+    })
+}
+
+/**
+ * 根据用户id返回关注人列表
+ * @param {int} userId 
+ */
+async function getFollowersData(userId) {
+    //service
+    const { count, userList } = await getFollowersByUser(userId)
     return new SuccessModel({
         count, userList
     })
@@ -32,8 +44,8 @@ async function follow(followerId, userId) {
         console.error(err)
         new new ErrorModel(followErrorInfo)
     }
-
 }
+
 /**
  * 取消关注
  * @param {int} followerId 被关注人
@@ -48,8 +60,11 @@ async function unfollow(followerId, userId) {
         new new ErrorModel(unfollowErrorInfo)
     }
 }
+
+
 module.exports = {
     getFans,
     follow,
-    unfollow
+    unfollow,
+    getFollowersData
 }

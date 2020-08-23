@@ -36,6 +36,29 @@ async function getUsersByFollower(followerId) {
     }
 }
 
+async function getFollowersByUser(userId) {
+    const result = await UserRelation.findAndCountAll({
+        order: [
+            ['id', 'desc']
+        ],
+        include: {
+            model: User,
+            attributes: ['id', 'userName', 'nickName', 'picture', 'city']
+        },
+        where: {
+            userId: userId
+        }
+    })
+
+    let userList = result.rows.map(row => row.user)
+    userList = userList.map(row => row.dataValues)
+    userList = formateUser(userList)
+    return {
+        count: result.count,
+        userList
+    }
+}
+
 /**
  * 插入新关系
  * @param {int}} followerId 
@@ -63,5 +86,6 @@ async function deleteRelation(followerId, userId) {
 module.exports = {
     getUsersByFollower,
     insertRelation,
-    deleteRelation
+    deleteRelation,
+    getFollowersByUser
 }

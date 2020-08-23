@@ -4,14 +4,14 @@
  */
 
 const sever = require('../server')
-const { COOKIE, USER_NAME } = require('../testUserInfo')
+const { COOKIE_1, USER_NAME } = require('../testUserInfo')
 const serve = require('koa-static')
 const server = require('../server')
 
 test('个人主页，加载第一页应该成功', async () => {
     const res = await server
         .get(`/api/profile/loadMore/${USER_NAME}/0`)
-        .set('cookie', COOKIE)
+        .set('cookie', COOKIE_1)
     expect(res.body.errno).toBe(0)
     const data = res.body.data
 

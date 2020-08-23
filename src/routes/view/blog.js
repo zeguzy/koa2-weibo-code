@@ -9,7 +9,7 @@ const { loginCheck, loginRedirect } = require('../../middlewares/loginChecks')
 const { getUserBlogList } = require('../../controller/blog-profile')
 const { isExist } = require('../../controller/user')
 const { getUserSquareList } = require('../../controller/blog-square')
-const { getFans } = require('../../controller/userRelation')
+const { getFans, getFollowersData } = require('../../controller/userRelation')
 router.get('/', loginRedirect, async (ctx, next) => {
     await ctx.render('index', {})
 })
@@ -28,7 +28,6 @@ router.get('/profile/:userName', loginRedirect, async (ctx, next) => {
     let curUserName = ctx.params.userName
     let curUserInfo = myUserInfo
     const isMe = myUserName === curUserName
-    console.log('curUserName...', myUserName, '...', curUserName, 'isMe...', isMe)
 
     if (!isMe) {
         const existResult = await isExist(curUserName)
@@ -42,16 +41,15 @@ router.get('/profile/:userName', loginRedirect, async (ctx, next) => {
 
     //获取粉丝
     //controller
-    console.log('curUserInfo.id....', curUserInfo)
     const fansData = await getFans(curUserInfo.userId)
 
-    console.log('fansData...', fansData.data)
     //我是否关注了此人
     const amIFollowed = fansData.data.userList.some(item => {
         return item.userName === myUserName
     })
-    console.log('amIFollowed...', amIFollowed)
 
+    //关注人列表
+    const followerData = await getFollowersData(curUserInfo.userId)
 
     await ctx.render('profile', {
         blogData: {
@@ -65,7 +63,11 @@ router.get('/profile/:userName', loginRedirect, async (ctx, next) => {
             userInfo: curUserInfo,
             isMe: isMe,
             fansData: fansData.data,
-            amIFollowed
+            amIFollowed,
+            followersData: {
+                count: followerData.data.count,
+                list: followerData.data.userList
+            }
         }
 
     })
