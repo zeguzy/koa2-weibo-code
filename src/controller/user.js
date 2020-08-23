@@ -64,9 +64,9 @@ async function login(ctx, userName, password) {
     if (!result) {
         return new ErrorModel(userNotExistError)
     }
-    const { nickName, city, picture, gender, id } = result
+    const { nickName, city, picture, gender, userId } = result
     console.log(result)
-    ctx.session.userInfo = { userName, nickName, city, picture, gender, userId: id }
+    ctx.session.userInfo = { userName, nickName, city, picture, gender, userId }
     return new SuccessModel({})
 }
 
