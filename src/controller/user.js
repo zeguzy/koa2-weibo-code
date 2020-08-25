@@ -96,7 +96,7 @@ async function changeInfo(ctx, {
     newCity,
     newPicture
 }) {
-    const { userName } = ctx.session.userInfo
+    const { userName, gender, userId } = ctx.session.userInfo
     if (!newNickName) {
         newNickName = userName
     }
@@ -106,7 +106,10 @@ async function changeInfo(ctx, {
         userName
     })
     if (result) {
-        ctx.session.userInfo = { nickName: newNickName, city: newCity, picture: newPicture, userName }
+        console.log(ctx.session.userInfo)
+        ctx.session.userInfo = { nickName: newNickName, city: newCity, picture: newPicture, userName, gender, userId }
+        console.log(ctx.session.userInfo)
+
         return new SuccessModel()
     }
     return new ErrorModel(changeUserFailInfo)
