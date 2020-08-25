@@ -13,6 +13,7 @@ const {
     changeUserFailInfo
 } = require('../model/ErrorList')
 const doCrypto = require('../utils/crypto')
+const { follow } = require('./userRelation')
 /**
  * 判断用户是否存在
  * @param {String} userName 用户名
@@ -40,11 +41,14 @@ async function register({ userName, password, gender }) {
 
     //注册
     try {
-        createUser({
+        const result = await createUser({
             userName,
             password: doCrypto(password),
             gender
         })
+        // console.log('result...', result)
+
+        await follow(result.id, result.id)
         return new SuccessModel({})
     } catch (err) {
         console.error(err)
@@ -65,7 +69,7 @@ async function login(ctx, userName, password) {
         return new ErrorModel(userNotExistError)
     }
     const { nickName, city, picture, gender, userId } = result
-    console.log(result)
+    // console.log(result)
     ctx.session.userInfo = { userName, nickName, city, picture, gender, userId }
     return new SuccessModel({})
 }

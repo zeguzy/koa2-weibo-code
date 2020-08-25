@@ -49,13 +49,13 @@ async function getUserInfo(userName, password) {
  */
 async function createUser({ userName, password, gender = 3, nickName }) {
     console.log('createUser...', userName, password, gender, nickName)
-    await User.create({
+    const result = await User.create({
         userName,
         password,
         gender,
         nickName: nickName ? nickName : userName
     })
-    // return result
+    return result.dataValues
 
 }
 async function deleteUser(userName) {
