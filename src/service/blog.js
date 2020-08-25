@@ -2,7 +2,7 @@
  * @description 处理blog数据
  * @author zegu
  */
-const { Blog, User } = require('../db/model/index')
+const { Blog, User, UserRelation } = require('../db/model/index')
 const { formateUser, formateBlog } = require('./__formate')
 
 /**
@@ -60,9 +60,49 @@ async function getBlogListByUser({ userName, pageIndex = 0, pageSize }) {
         count: result.count,
         blogList,
     }
+}
+
+/**
+ *获取关注人微波列表 
+ * @param {*} userId 
+ * @param {*} pageIndex 
+ */
+async function getFollwerBlogById(userId, pageIndex, pageSize) {
+    const result = await Blog.findAndCountAll({
+        limit: pageSize,
+        offset: pageIndex * pageSize,
+        order: [
+            ['id', 'desc']
+        ],
+        include: [
+            {
+                model: User,
+                attributes: ['userName', 'nickName', 'picture']
+            },
+            {
+                model: UserRelation,
+                attributes: ['userId', 'followerId'],
+                where: {
+                    userId
+                }
+            }
+        ]
+    })
+    let blogList = result.rows.map(row => {
+        formateBlog(row)
+        row.dataValues.user = row.dataValues.user.dataValues
+        formateUser(row.dataValues.user)
+        delete row.dataValues.userRelation
+        return row.dataValues
+    })
+    return {
+        count: result.count,
+        blogList
+    }
 
 }
 module.exports = {
     createBlog,
-    getBlogListByUser
+    getBlogListByUser,
+    getFollwerBlogById
 }

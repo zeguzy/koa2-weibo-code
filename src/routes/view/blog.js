@@ -10,13 +10,16 @@ const { getUserBlogList } = require('../../controller/blog-profile')
 const { isExist } = require('../../controller/user')
 const { getUserSquareList } = require('../../controller/blog-square')
 const { getFans, getFollowersData } = require('../../controller/userRelation')
-
+const { getFollwerBlog } = require('../../controller/blog')
 
 router.get('/', loginRedirect, async (ctx, next) => {
 
     //已经登录的用户信息
     const myUserInfo = ctx.session.userInfo
-    const myUserName = myUserInfo.userName
+    const userId = myUserInfo.userId
+
+    //获取第一页
+    const result = await getFollwerBlog(userId, pageIndex = 0)
 
     //获取粉丝
     const fansData = await getFans(myUserInfo.userId)
@@ -29,11 +32,11 @@ router.get('/', loginRedirect, async (ctx, next) => {
         followersData: {
             count: followerData.data.count,
             list: followerData.data.userList
-        }
+        },
     }
-    console.log(userData)
     await ctx.render('index', {
-
+        userData,
+        blogData: result.data
     })
 })
 
@@ -64,7 +67,6 @@ router.get('/profile/:userName', loginRedirect, async (ctx, next) => {
 
     //获取粉丝
     //controller
-    console.log('curUserInfo.userId...', curUserInfo.userId)
     const fansData = await getFans(curUserInfo.userId)
 
     //我是否关注了此人

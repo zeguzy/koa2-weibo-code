@@ -16,11 +16,9 @@ router.prefix('/api/square/')
 router.get('/loadMore/:pageIndex', loginCheck, async (ctx, next) => {
 
     const { pageIndex } = ctx.params
-    console.log(pageIndex)
     const result = await getUserSquareList({ pageIndex })
 
     result.data.blogListTpl = getBlogListStr(result.data.blogList)
-    console.log(result)
     ctx.body = result
 })
 
