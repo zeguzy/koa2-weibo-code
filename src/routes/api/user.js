@@ -8,7 +8,8 @@ const userValidate = require('../../validator/user')
 const genValidator = require('../../middlewares/validator')
 const { isTest } = require('../../utils/env')
 const { loginCheck } = require('../../middlewares/loginChecks')
-
+const { getFollowersData } = require('../../controller/userRelation')
+const { SuccessModel } = require('../../model/ResultModel')
 
 router.prefix('/api/user')
 
@@ -74,6 +75,17 @@ router.post('/logout', loginCheck, async (ctx, next) => {
     ctx.body = await logout(ctx)
 })
 
+
+//at
+router.get('/getAtList', loginCheck, async (ctx, next) => {
+    const { userId } = ctx.session.userInfo
+    const result = await getFollowersData(userId)
+    const userNameList = result.data.userList.map(Element => {
+        return Element.nickName + ' - ' + Element.userName
+    })
+    ctx.body = userNameList
+
+})
 
 module.exports = router
 

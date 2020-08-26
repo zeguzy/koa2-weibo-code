@@ -63,7 +63,7 @@ async function getBlogListByUser({ userName, pageIndex = 0, pageSize }) {
 }
 
 /**
- *获取关注人微波列表 
+ * 获取关注人微波列表 
  * @param {*} userId 
  * @param {*} pageIndex 
  */
