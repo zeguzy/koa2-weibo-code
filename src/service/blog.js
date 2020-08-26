@@ -48,6 +48,7 @@ async function getBlogListByUser({ userName, pageIndex = 0, pageSize }) {
     let blogList = result.rows.map(row => row.dataValues)
 
     formateBlog(blogList)
+
     blogList = blogList.map(blogIterm => {
         const user = blogIterm.user.dataValues
         blogIterm.user = formateUser(user)
@@ -89,12 +90,13 @@ async function getFollwerBlogById(userId, pageIndex, pageSize) {
         ]
     })
     let blogList = result.rows.map(row => {
-        formateBlog(row)
+        formateBlog(row.dataValues)
         row.dataValues.user = row.dataValues.user.dataValues
         formateUser(row.dataValues.user)
         delete row.dataValues.userRelation
         return row.dataValues
     })
+
     return {
         count: result.count,
         blogList
