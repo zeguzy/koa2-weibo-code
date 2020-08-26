@@ -49,7 +49,18 @@ test('获取张三的关注人，应该有a12', async () => {
     expect(hasUserName).toBe(true)
 })
 
-//张三取消关注a12
+
+//获取At列表
+test('zhangsan关注了里斯，张三的关注列表里面应该有里斯', async () => {
+    const res = await server
+        .get('/api/user/getAtList')
+        .set('cookie', COOKIE_1)
+    const hasUserName = res.body.some(item => {
+        return item.indexOf(`- ${USER_NAME_2}`)
+    })
+    expect(hasUserName).toBe(true)
+})
+// 张三取消关注a12
 test('张三取消关注a12', async () => {
     const res = await server
         .post('/api/profile/unFollow')
