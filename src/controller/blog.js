@@ -7,16 +7,37 @@ const { createBlog, getFollwerBlogById } = require('../service/blog')
 const { SuccessModel, ErrorModel } = require('../model/ResultModel')
 const { createBlogFailInfo } = require('../model/ErrorList')
 const xss = require('xss')
-const { PAGE_SIZE } = require('../conf/constant')
+const { PAGE_SIZE, REG_FOR_AT_WHO } = require('../conf/constant')
+const { getUserInfo } = require('../service/user')
+const { createAtRelation } = require('../service/atRelation')
 /**
  * 处理新建博客的业务逻辑
  * @param {object} param0 userId, content, image 
  */
 async function create({ userId, content, image }) {
+    const userNameList = []
+    content = content.replace(
+        REG_FOR_AT_WHO, (matchStr, nickName, userName) => {
+            userNameList.push(userName)
+            return matchStr
+        }
+    )
+
+    const atUserList = await Promise.all(
+        userNameList.map(userName => getUserInfo(userName))
+    )
+
+
+
+
     //调用sevice
     try {
         const result = await createBlog({ userId, content: content, image })
-        console.log('result ....', result)
+
+        await Promise.all(atUserList.map(userInfo => {
+            console.log(userInfo.userId)
+            createAtRelation(userInfo.userId, result.id)
+        }))
         return new SuccessModel(result)
     } catch (ex) {
         // console.error(ex.message, ex.stack)
