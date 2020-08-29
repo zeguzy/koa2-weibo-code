@@ -31,4 +31,5 @@ router.get('/loadMore/:pageIndex', loginCheck, async (ctx, next) => {
     result.data.blogListTpl = getBlogListStr(result.data.blogList)
     ctx.body = result
 })
+
 module.exports = router

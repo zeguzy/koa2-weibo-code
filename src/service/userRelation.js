@@ -2,7 +2,7 @@
  * 用户关系service
  * @author zegu
  */
-const { User, UserRelation } = require('../db/model/index')
+const { User, UserRelation, AtRelation } = require('../db/model/index')
 const { formateUser } = require('./__formate')
 const Sequelize = require('sequelize')
 /**
@@ -90,9 +90,24 @@ async function deleteRelation(followerId, userId) {
         }
     })
 }
+
+/**
+ * 获取未读数
+ * @param {int} userId 
+ */
+async function getRelationCountByUser(userId) {
+    const result = await AtRelation.findAndCountAll({
+        where: {
+            userId: userId,
+            isRead: false
+        }
+    })
+    return result.count
+}
 module.exports = {
     getUsersByFollower,
     insertRelation,
     deleteRelation,
-    getFollowersByUser
+    getFollowersByUser,
+    getRelationCountByUser
 }

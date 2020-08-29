@@ -9,7 +9,7 @@ const { loginCheck, loginRedirect } = require('../../middlewares/loginChecks')
 const { getUserBlogList } = require('../../controller/blog-profile')
 const { isExist } = require('../../controller/user')
 const { getUserSquareList } = require('../../controller/blog-square')
-const { getFans, getFollowersData } = require('../../controller/userRelation')
+const { getFans, getFollowersData, getRelationCount } = require('../../controller/userRelation')
 const { getFollwerBlog } = require('../../controller/blog')
 
 router.get('/', loginRedirect, async (ctx, next) => {
@@ -26,6 +26,9 @@ router.get('/', loginRedirect, async (ctx, next) => {
 
     //关注人列表
     const followerData = await getFollowersData(myUserInfo.userId)
+
+    //获取未读消息
+    const atCountResult = await getRelationCount(myUserInfo.userId)
     userData = {
         userInfo: myUserInfo,
         fansData: fansData.data,
@@ -33,6 +36,7 @@ router.get('/', loginRedirect, async (ctx, next) => {
             count: followerData.data.count,
             list: followerData.data.userList
         },
+        atCount: atCountResult.data,
     }
     await ctx.render('index', {
         userData,
@@ -77,6 +81,9 @@ router.get('/profile/:userName', loginRedirect, async (ctx, next) => {
     //关注人列表
     const followerData = await getFollowersData(curUserInfo.userId)
 
+    //获取未读消息
+    const atCountResult = await getRelationCount(curUserInfo.userId)
+    // console.log(userData)
     await ctx.render('profile', {
         blogData: {
             isEmpty,
@@ -90,6 +97,7 @@ router.get('/profile/:userName', loginRedirect, async (ctx, next) => {
             isMe: isMe,
             fansData: fansData.data,
             amIFollowed,
+            atCount: atCountResult.data,
             followersData: {
                 count: followerData.data.count,
                 list: followerData.data.userList
