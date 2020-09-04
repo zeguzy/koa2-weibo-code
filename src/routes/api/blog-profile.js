@@ -18,7 +18,7 @@ router.get('/loadMore/:userName/:pageIndex', loginCheck, async (ctx, next) => {
     const result = await getUserBlogList({ userName, pageIndex })
 
     //渲染为字符串
-    result.data.blogListTpl = getBlogListStr(result.data.blogList)
+    result.data.blogListTpl = await getBlogListStr(result.data.blogList)
 
     // console.log(result)
     ctx.body = result

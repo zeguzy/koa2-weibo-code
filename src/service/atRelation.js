@@ -14,6 +14,7 @@ async function createAtRelation(userId, blogId) {
 
 
 async function getBlogByNotRead(userId, pageSize, pageIndex) {
+
     const result = await Blog.findAndCountAll({
         limit: pageSize,
         offset: pageIndex * pageSize,
@@ -48,18 +49,21 @@ async function getBlogByNotRead(userId, pageSize, pageIndex) {
 /**
  * 通过id更改回复的状态
  */
-async function changeStatusByBlogId(blogId) {
-    AtRelation.update({
+async function updateAtRelation(blogId) {
+
+    const result = await AtRelation.update({
         isRead: true
     }, {
         where: {
-            blogId
+            blogId,
+            isRead: false
         }
     })
+    return result[0] > 0
 }
 
 module.exports = {
     createAtRelation,
     getBlogByNotRead,
-    changeStatusByBlogId
+    updateAtRelation
 }

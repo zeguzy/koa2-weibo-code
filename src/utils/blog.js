@@ -16,8 +16,8 @@ const BLOG_LIST_TPL = fs.readFileSync(fullPath).toString()
  * @param {*} blogList 
  * @param {*} canReply 
  */
-function getBlogListStr(blogList = [], canReply = false) {
-    return ejs.render(BLOG_LIST_TPL, {
+async function getBlogListStr(blogList = [], canReply = false) {
+    return await ejs.render(BLOG_LIST_TPL, {
         blogList,
         canReply
     })

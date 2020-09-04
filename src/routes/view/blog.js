@@ -134,7 +134,16 @@ router.get('/at-me', loginRedirect, async (ctx, next) => {
     const { userId } = ctx.session.userInfo
 
     const result = await getBlogNotRead(userId)
-    const { atCount, blogList } = result.data
-    await ctx.render('atMe', result.data)
+    const { atCount, blogList, pageSize, pageIndex, count } = result.data
+    console.log(atCount, blogList, pageSize, pageIndex, count)
+    await ctx.render('atMe', {
+        atCount,
+        blogData: {
+            blogList,
+            pageSize,
+            pageIndex,
+            count
+        }
+    })
 })
 module.exports = router

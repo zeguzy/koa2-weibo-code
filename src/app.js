@@ -22,6 +22,7 @@ const blogViewAPI = require('./routes/view/blog')
 const blogsApi = require('./routes/api/blog-home')
 const blogsProfileoApi = require('./routes/api/blog-profile')
 const blogSquareApi = require('./routes/api/blog-square')
+const blogAt = require('./routes/api/blog-at')
 
 
 let ERR_CONF = {}
@@ -97,6 +98,7 @@ app.use(userApi.routes(), userApi.allowedMethods())
 app.use(utilsApi.routes(), utilsApi.allowedMethods())
 app.use(blogViewAPI.routes(), blogViewAPI.allowedMethods())
 app.use(blogsApi.routes(), blogsApi.allowedMethods())
+app.use(blogAt.routes(), blogAt.allowedMethods())
 app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods())   //404注册到最后面
 // error-handling
 app.on('error', (err, ctx) => {
