@@ -18,6 +18,7 @@ router.get('/loadMore/:pageIndex', loginCheck, async (ctx, next) => {
     const result = await getBlogNotRead(userId, pageIndex)
 
     result.data.blogListTpl = await getBlogListStr(result.data.blogList)
+    console.log(result)
     ctx.body = result
 })
 

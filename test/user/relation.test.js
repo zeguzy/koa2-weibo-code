@@ -61,10 +61,10 @@ test('zhangsan关注了里斯，张三的关注列表里面应该有里斯', asy
     expect(hasUserName).toBe(true)
 })
 // 张三取消关注a12
-test('张三取消关注a12', async () => {
-    const res = await server
-        .post('/api/profile/unFollow')
-        .send({ followerId: ID_2 })
-        .set('cookie', COOKIE_1)
-    expect(res.body.errno).toBe(0)
-})
+// test('张三取消关注a12', async () => {
+//     const res = await server
+//         .post('/api/profile/unFollow')
+//         .send({ followerId: ID_2 })
+//         .set('cookie', COOKIE_1)
+//     expect(res.body.errno).toBe(0)
+// })
