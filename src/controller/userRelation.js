@@ -4,7 +4,7 @@
  */
 const { getUsersByFollower, getFollowersByUser } = require('../service/userRelation')
 const { SuccessModel, ErrorModel } = require('../model/ResultModel')
-const { insertRelation, deleteRelation, getRelationCountByUser } = require('../service/userRelation')
+const { insertRelation, deleteRelation } = require('../service/userRelation')
 const { followErrorInfo, unfollowErrorInfo } = require('../model/ErrorList')
 /**
  * 根据用户id返回粉丝列表
@@ -61,20 +61,11 @@ async function unfollow(followerId, userId) {
     }
 }
 
-/**
- * 用户唯读消息数量
- * @param {int} userId 
- */
-async function getRelationCount(userId) {
-    //service
-    const result = await getRelationCountByUser(userId)
-    return new SuccessModel(result)
-}
+
 
 module.exports = {
     getFans,
     follow,
     unfollow,
     getFollowersData,
-    getRelationCount
 }

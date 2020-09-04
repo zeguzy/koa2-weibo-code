@@ -9,7 +9,8 @@ const { loginCheck, loginRedirect } = require('../../middlewares/loginChecks')
 const { getUserBlogList } = require('../../controller/blog-profile')
 const { isExist } = require('../../controller/user')
 const { getUserSquareList } = require('../../controller/blog-square')
-const { getFans, getFollowersData, getRelationCount } = require('../../controller/userRelation')
+const { getFans, getFollowersData } = require('../../controller/userRelation')
+const { getRelationCount, getBlogNotRead } = require('../../controller/at-Relation')
 const { getFollwerBlog } = require('../../controller/blog')
 
 router.get('/', loginRedirect, async (ctx, next) => {
@@ -123,5 +124,17 @@ router.get('/square', loginRedirect, async (ctx, next) => {
             pageIndex: 0
         }
     })
+})
+
+
+/**
+ * at Me
+ */
+router.get('/at-me', loginRedirect, async (ctx, next) => {
+    const { userId } = ctx.session.userInfo
+
+    const result = await getBlogNotRead(userId)
+    const { atCount, blogList } = result.data
+    await ctx.render('atMe', result.data)
 })
 module.exports = router
