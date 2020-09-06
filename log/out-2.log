@@ -1,0 +1,280 @@
+  <-- GET /
+warning: please use IANA standard timezone format ('Etc/GMT0')
+  xxx GET / 500 39ms -
+  <-- GET /
+warning: please use IANA standard timezone format ('Etc/GMT0')
+  xxx GET / 500 37ms -
+  <-- GET /
+warning: please use IANA standard timezone format ('Etc/GMT0')
+  xxx GET / 500 57ms -
+  <-- GET /error
+  --> GET /error 200 19ms 2.3kb
+  <-- GET /javascripts/my-ajax.js
+  --> GET /javascripts/my-ajax.js 200 5ms 2.45kb
+  <-- GET /
+warning: please use IANA standard timezone format ('Etc/GMT0')
+  xxx GET / 500 38ms -
+  <-- GET /error
+  --> GET /error 200 8ms 2.3kb
+  <-- GET /
+warning: please use IANA standard timezone format ('Etc/GMT0')
+  xxx GET / 500 78ms -
+  <-- GET /error
+  --> GET /error 200 12ms 2.3kb
+  <-- GET /css/main.css
+  --> GET /css/main.css 200 4ms 661b
+  <-- GET /javascripts/query-object.js
+  --> GET /javascripts/query-object.js 200 2ms 8.46kb
+  <-- GET /javascripts/my-ajax.js
+  --> GET /javascripts/my-ajax.js 200 37ms 2.45kb
+  <-- GET /javascripts/my-ajax.js
+  --> GET /javascripts/my-ajax.js 200 13ms 2.45kb
+  <-- GET /css/main.css
+  --> GET /css/main.css 200 14ms 661b
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+isPrd... true
+2020-09-06 09:11:35: isPrd... true
+2020-09-06 09:11:37: isPrd... true
+2020-09-06 09:11:50:   <-- GET /javascripts/my-ajax.js
+2020-09-06 09:11:50:   --> GET /javascripts/my-ajax.js 200 12ms 2.45kb
+2020-09-06 09:11:57:   <-- GET /
+2020-09-06 09:11:57: warning: please use IANA standard timezone format ('Etc/GMT0')
+2020-09-06 09:11:57: warning: please use IANA standard timezone format ('Etc/GMT0')
+2020-09-06 09:11:57: warning: please use IANA standard timezone format ('Etc/GMT0')
+2020-09-06 09:11:57: Executing (default): SELECT count(`blog`.`id`) AS `count` FROM `blogs` AS `blog` LEFT OUTER JOIN `users` AS `user` ON `blog`.`userId` = `user`.`id` INNER JOIN `userRelations` AS `userRelation` ON `blog`.`userId` = `userRelation`.`followerId` AND `userRelation`.`userId` = 2;
+2020-09-06 09:11:57: Executing (default): SELECT `blog`.`id`, `blog`.`userId`, `blog`.`image`, `blog`.`content`, `blog`.`createdAt`, `blog`.`updatedAt`, `user`.`id` AS `user.id`, `user`.`userName` AS `user.userName`, `user`.`nickName` AS `user.nickName`, `user`.`picture` AS `user.picture`, `userRelation`.`id` AS `userRelation.id`, `userRelation`.`userId` AS `userRelation.userId`, `userRelation`.`followerId` AS `userRelation.followerId` FROM `blogs` AS `blog` LEFT OUTER JOIN `users` AS `user` ON `blog`.`userId` = `user`.`id` INNER JOIN `userRelations` AS `userRelation` ON `blog`.`userId` = `userRelation`.`followerId` AND `userRelation`.`userId` = 2 ORDER BY `blog`.`id` DESC LIMIT 0, 2;
+2020-09-06 09:11:57: Executing (default): SELECT count(`user`.`id`) AS `count` FROM `users` AS `user` INNER JOIN `userRelations` AS `userRelations` ON `user`.`id` = `userRelations`.`userId` AND `userRelations`.`followerId` = 2 AND `userRelations`.`userId` != 2;
+2020-09-06 09:11:57: Executing (default): SELECT `user`.`id`, `user`.`userName`, `user`.`nickName`, `user`.`picture`, `userRelations`.`id` AS `userRelations.id`, `userRelations`.`userId` AS `userRelations.userId`, `userRelations`.`followerId` AS `userRelations.followerId`, `userRelations`.`createdAt` AS `userRelations.createdAt`, `userRelations`.`updatedAt` AS `userRelations.updatedAt` FROM `users` AS `user` INNER JOIN `userRelations` AS `userRelations` ON `user`.`id` = `userRelations`.`userId` AND `userRelations`.`followerId` = 2 AND `userRelations`.`userId` != 2 ORDER BY `user`.`id` DESC;
+2020-09-06 09:11:57: Executing (default): SELECT count(`userRelation`.`id`) AS `count` FROM `userRelations` AS `userRelation` LEFT OUTER JOIN `users` AS `user` ON `userRelation`.`followerId` = `user`.`id` WHERE `userRelation`.`userId` = 2 AND `userRelation`.`followerId` != 2;
+2020-09-06 09:11:57: Executing (default): SELECT `userRelation`.`id`, `userRelation`.`userId`, `userRelation`.`followerId`, `userRelation`.`createdAt`, `userRelation`.`updatedAt`, `user`.`id` AS `user.id`, `user`.`userName` AS `user.userName`, `user`.`nickName` AS `user.nickName`, `user`.`picture` AS `user.picture`, `user`.`city` AS `user.city` FROM `userRelations` AS `userRelation` LEFT OUTER JOIN `users` AS `user` ON `userRelation`.`followerId` = `user`.`id` WHERE `userRelation`.`userId` = 2 AND `userRelation`.`followerId` != 2 ORDER BY `userRelation`.`id` DESC;
+2020-09-06 09:11:57: Executing (default): SELECT count(*) AS `count` FROM `atRelations` AS `atRelation` WHERE `atRelation`.`userId` = 2 AND `atRelation`.`isRead` = false;
+2020-09-06 09:11:57: Executing (default): SELECT `id`, `userId`, `blogId`, `isRead`, `createdAt`, `updatedAt` FROM `atRelations` AS `atRelation` WHERE `atRelation`.`userId` = 2 AND `atRelation`.`isRead` = false;
+2020-09-06 09:11:57:   --> GET / 200 69ms 11.19kb
+2020-09-06 09:11:57:   <-- GET /css/main.css
+2020-09-06 09:11:57:   <-- GET /css/jquery.atwho.css
+2020-09-06 09:11:57:   --> GET /css/main.css 200 5ms 661b
+2020-09-06 09:11:57:   <-- GET /javascripts/jquery.atwho.js
+2020-09-06 09:11:57:   --> GET /css/jquery.atwho.css 200 4ms 1.28kb
+2020-09-06 09:11:57:   --> GET /javascripts/jquery.atwho.js 200 4ms 36.65kb
+2020-09-06 09:11:59:   <-- GET /
+2020-09-06 09:11:59: Executing (default): SELECT count(`blog`.`id`) AS `count` FROM `blogs` AS `blog` LEFT OUTER JOIN `users` AS `user` ON `blog`.`userId` = `user`.`id` INNER JOIN `userRelations` AS `userRelation` ON `blog`.`userId` = `userRelation`.`followerId` AND `userRelation`.`userId` = 2;
+2020-09-06 09:11:59: Executing (default): SELECT `blog`.`id`, `blog`.`userId`, `blog`.`image`, `blog`.`content`, `blog`.`createdAt`, `blog`.`updatedAt`, `user`.`id` AS `user.id`, `user`.`userName` AS `user.userName`, `user`.`nickName` AS `user.nickName`, `user`.`picture` AS `user.picture`, `userRelation`.`id` AS `userRelation.id`, `userRelation`.`userId` AS `userRelation.userId`, `userRelation`.`followerId` AS `userRelation.followerId` FROM `blogs` AS `blog` LEFT OUTER JOIN `users` AS `user` ON `blog`.`userId` = `user`.`id` INNER JOIN `userRelations` AS `userRelation` ON `blog`.`userId` = `userRelation`.`followerId` AND `userRelation`.`userId` = 2 ORDER BY `blog`.`id` DESC LIMIT 0, 2;
+2020-09-06 09:11:59: Executing (default): SELECT count(`user`.`id`) AS `count` FROM `users` AS `user` INNER JOIN `userRelations` AS `userRelations` ON `user`.`id` = `userRelations`.`userId` AND `userRelations`.`followerId` = 2 AND `userRelations`.`userId` != 2;
+2020-09-06 09:11:59: Executing (default): SELECT `user`.`id`, `user`.`userName`, `user`.`nickName`, `user`.`picture`, `userRelations`.`id` AS `userRelations.id`, `userRelations`.`userId` AS `userRelations.userId`, `userRelations`.`followerId` AS `userRelations.followerId`, `userRelations`.`createdAt` AS `userRelations.createdAt`, `userRelations`.`updatedAt` AS `userRelations.updatedAt` FROM `users` AS `user` INNER JOIN `userRelations` AS `userRelations` ON `user`.`id` = `userRelations`.`userId` AND `userRelations`.`followerId` = 2 AND `userRelations`.`userId` != 2 ORDER BY `user`.`id` DESC;
+2020-09-06 09:11:59: Executing (default): SELECT count(`userRelation`.`id`) AS `count` FROM `userRelations` AS `userRelation` LEFT OUTER JOIN `users` AS `user` ON `userRelation`.`followerId` = `user`.`id` WHERE `userRelation`.`userId` = 2 AND `userRelation`.`followerId` != 2;
+2020-09-06 09:11:59: Executing (default): SELECT `userRelation`.`id`, `userRelation`.`userId`, `userRelation`.`followerId`, `userRelation`.`createdAt`, `userRelation`.`updatedAt`, `user`.`id` AS `user.id`, `user`.`userName` AS `user.userName`, `user`.`nickName` AS `user.nickName`, `user`.`picture` AS `user.picture`, `user`.`city` AS `user.city` FROM `userRelations` AS `userRelation` LEFT OUTER JOIN `users` AS `user` ON `userRelation`.`followerId` = `user`.`id` WHERE `userRelation`.`userId` = 2 AND `userRelation`.`followerId` != 2 ORDER BY `userRelation`.`id` DESC;
+2020-09-06 09:11:59: Executing (default): SELECT count(*) AS `count` FROM `atRelations` AS `atRelation` WHERE `atRelation`.`userId` = 2 AND `atRelation`.`isRead` = false;
+2020-09-06 09:11:59: Executing (default): SELECT `id`, `userId`, `blogId`, `isRead`, `createdAt`, `updatedAt` FROM `atRelations` AS `atRelation` WHERE `atRelation`.`userId` = 2 AND `atRelation`.`isRead` = false;
+2020-09-06 09:11:59:   --> GET / 200 23ms 11.19kb
+2020-09-06 09:11:59:   <-- GET /css/right.css
+2020-09-06 09:11:59:   <-- GET /javascripts/jquery.caret.js
+2020-09-06 09:11:59:   --> GET /css/right.css 200 2ms 532b
+2020-09-06 09:11:59:   --> GET /javascripts/jquery.caret.js 200 2ms 12.88kb
+2020-09-06 09:11:59:   <-- GET /profile
+2020-09-06 09:11:59:   --> GET /profile 302 3ms 65b
+2020-09-06 09:11:59:   <-- GET /javascripts/query-object.js
+2020-09-06 09:11:59:   --> GET /javascripts/query-object.js 200 2ms 8.46kb
+2020-09-06 09:12:00:   <-- GET /square
+2020-09-06 09:12:00:   --> GET /square 200 13ms 5.79kb
+2020-09-06 09:12:00:   <-- GET /css/right.css
+2020-09-06 09:12:00:   --> GET /css/right.css 200 3ms 532b
+2020-09-06 09:12:01:   <-- GET /setting
+2020-09-06 09:12:01:   --> GET /setting 200 34ms 7.88kb
+2020-09-06 09:12:14:   <-- GET /css/right.css
+2020-09-06 09:12:14:   <-- GET /css/main.css
+2020-09-06 09:12:14:   --> GET /css/right.css 200 6ms 532b
+2020-09-06 09:12:14:   --> GET /css/main.css 200 6ms 661b
+2020-09-06 09:12:14:   <-- GET /images/head.jpg
+2020-09-06 09:12:14:   --> GET /images/head.jpg 200 2ms 15.94kb
+2020-09-06 09:12:16:   <-- GET /css/main.css
+2020-09-06 09:12:16:   <-- GET /javascripts/jquery.caret.js
+2020-09-06 09:12:16:   --> GET /css/main.css 200 6ms 661b
+2020-09-06 09:12:16:   --> GET /javascripts/jquery.caret.js 200 6ms 12.88kb
+2020-09-06 09:12:17:   <-- GET /images/head.jpg
+2020-09-06 09:12:17:   -x- GET /images/head.jpg 200 2ms 15.94kb
+2020-09-06 09:12:18:   <-- GET /css/main.css
+2020-09-06 09:12:18:   --> GET /css/main.css 200 3ms 661b
+2020-09-06 09:12:18:   <-- GET /images/head.jpg
+2020-09-06 09:12:18:   -x- GET /images/head.jpg 200 2ms 15.94kb
+2020-09-06 09:12:19:   <-- GET /css/right.css
+2020-09-06 09:12:19:   --> GET /css/right.css 200 6ms 532b
+2020-09-06 09:12:19:   <-- GET /test.png
+2020-09-06 09:12:19:   --> GET /test.png 200 2ms 36.11kb
+2020-09-06 09:12:20:   <-- GET /javascripts/query-object.js
+2020-09-06 09:12:20:   --> GET /javascripts/query-object.js 200 2ms 8.46kb
+2020-09-06 16:04:54:   <-- GET /javascripts/query-object.js
+2020-09-06 16:04:54:   --> GET /javascripts/query-object.js 200 7ms 8.46kb
+2020-09-06 16:04:54:   <-- GET /favicon.ico
+2020-09-06 16:04:58:   <-- GET /javascripts/query-object.js
+2020-09-06 16:04:58:   <-- GET /javascripts/my-ajax.js
+2020-09-06 16:04:58:   <-- GET /css/jquery.atwho.css
+2020-09-06 16:04:58:   --> GET /javascripts/my-ajax.js 200 11ms 2.45kb
+2020-09-06 16:04:58:   --> GET /javascripts/query-object.js 200 14ms 8.46kb
+2020-09-06 16:04:58:   --> GET /css/jquery.atwho.css 200 11ms 1.28kb
+2020-09-06 16:04:58:   <-- GET /javascripts/jquery.atwho.js
+2020-09-06 16:04:58:   --> GET /javascripts/jquery.atwho.js 200 5ms 36.65kb
+2020-09-06 16:04:58:   <-- GET /images/head.jpg
+2020-09-06 16:04:58:   --> GET /images/head.jpg 200 1ms 15.94kb
+2020-09-06 16:05:00: isPrd... true
+2020-09-06 16:05:07:   <-- GET /javascripts/my-ajax.js
+2020-09-06 16:05:07:   <-- GET /javascripts/jquery.atwho.js
+2020-09-06 16:05:07:   --> GET /javascripts/my-ajax.js 200 28ms 2.45kb
+2020-09-06 16:05:07:   -x- GET /javascripts/jquery.atwho.js 200 19ms 36.65kb
+2020-09-06 16:05:07:   <-- GET /favicon.ico
+2020-09-06 16:05:09:   <-- GET /css/main.css
+2020-09-06 16:05:09:   --> GET /css/main.css 200 5ms 661b
+2020-09-06 16:05:09:   <-- GET /images/head.jpg
+2020-09-06 16:05:09:   --> GET /images/head.jpg 200 1ms 15.94kb
+2020-09-06 16:05:10:   <-- GET /css/list.css
+2020-09-06 16:05:10:   --> GET /css/list.css 200 4ms 548b
+2020-09-06 16:05:10:   <-- GET /api/user/getAtList
+2020-09-06 16:05:10: warning: please use IANA standard timezone format ('Etc/GMT0')
+2020-09-06 16:05:10: warning: please use IANA standard timezone format ('Etc/GMT0')
+2020-09-06 16:05:10: warning: please use IANA standard timezone format ('Etc/GMT0')
+2020-09-06 16:05:10: Executing (default): SELECT count(`userRelation`.`id`) AS `count` FROM `userRelations` AS `userRelation` LEFT OUTER JOIN `users` AS `user` ON `userRelation`.`followerId` = `user`.`id` WHERE `userRelation`.`userId` = 2 AND `userRelation`.`followerId` != 2;
+2020-09-06 16:05:10: Executing (default): SELECT `userRelation`.`id`, `userRelation`.`userId`, `userRelation`.`followerId`, `userRelation`.`createdAt`, `userRelation`.`updatedAt`, `user`.`id` AS `user.id`, `user`.`userName` AS `user.userName`, `user`.`nickName` AS `user.nickName`, `user`.`picture` AS `user.picture`, `user`.`city` AS `user.city` FROM `userRelations` AS `userRelation` LEFT OUTER JOIN `users` AS `user` ON `userRelation`.`followerId` = `user`.`id` WHERE `userRelation`.`userId` = 2 AND `userRelation`.`followerId` != 2 ORDER BY `userRelation`.`id` DESC;
+2020-09-06 16:05:10:   --> GET /api/user/getAtList 200 52ms 13b
+2020-09-06 16:05:14:   <-- GET /javascripts/query-object.js
+2020-09-06 16:05:14:   --> GET /javascripts/query-object.js 200 9ms 8.46kb
+2020-09-06 16:05:15:   <-- GET /css/list.css
+2020-09-06 16:05:15:   --> GET /css/list.css 200 3ms 548b
+2020-09-06 16:05:15:   <-- GET /javascripts/query-object.js
+2020-09-06 16:05:15:   --> GET /javascripts/query-object.js 200 1ms 8.46kb
+2020-09-06 16:05:18:   <-- GET /profile/zhangsan
+2020-09-06 16:05:18: Executing (default): SELECT count(`blog`.`id`) AS `count` FROM `blogs` AS `blog` INNER JOIN `users` AS `user` ON `blog`.`userId` = `user`.`id` AND `user`.`userName` = 'zhangsan';
+2020-09-06 16:05:18: Executing (default): SELECT `blog`.`id`, `blog`.`userId`, `blog`.`image`, `blog`.`content`, `blog`.`createdAt`, `blog`.`updatedAt`, `user`.`id` AS `user.id`, `user`.`userName` AS `user.userName`, `user`.`nickName` AS `user.nickName`, `user`.`picture` AS `user.picture` FROM `blogs` AS `blog` INNER JOIN `users` AS `user` ON `blog`.`userId` = `user`.`id` AND `user`.`userName` = 'zhangsan' ORDER BY `blog`.`id` DESC LIMIT 0, 2;
+2020-09-06 16:05:18: Executing (default): SELECT count(`user`.`id`) AS `count` FROM `users` AS `user` INNER JOIN `userRelations` AS `userRelations` ON `user`.`id` = `userRelations`.`userId` AND `userRelations`.`followerId` = 2 AND `userRelations`.`userId` != 2;
+2020-09-06 16:05:18: Executing (default): SELECT `user`.`id`, `user`.`userName`, `user`.`nickName`, `user`.`picture`, `userRelations`.`id` AS `userRelations.id`, `userRelations`.`userId` AS `userRelations.userId`, `userRelations`.`followerId` AS `userRelations.followerId`, `userRelations`.`createdAt` AS `userRelations.createdAt`, `userRelations`.`updatedAt` AS `userRelations.updatedAt` FROM `users` AS `user` INNER JOIN `userRelations` AS `userRelations` ON `user`.`id` = `userRelations`.`userId` AND `userRelations`.`followerId` = 2 AND `userRelations`.`userId` != 2 ORDER BY `user`.`id` DESC;
+2020-09-06 16:05:18: Executing (default): SELECT count(`userRelation`.`id`) AS `count` FROM `userRelations` AS `userRelation` LEFT OUTER JOIN `users` AS `user` ON `userRelation`.`followerId` = `user`.`id` WHERE `userRelation`.`userId` = 2 AND `userRelation`.`followerId` != 2;
+2020-09-06 16:05:18: Executing (default): SELECT `userRelation`.`id`, `userRelation`.`userId`, `userRelation`.`followerId`, `userRelation`.`createdAt`, `userRelation`.`updatedAt`, `user`.`id` AS `user.id`, `user`.`userName` AS `user.userName`, `user`.`nickName` AS `user.nickName`, `user`.`picture` AS `user.picture`, `user`.`city` AS `user.city` FROM `userRelations` AS `userRelation` LEFT OUTER JOIN `users` AS `user` ON `userRelation`.`followerId` = `user`.`id` WHERE `userRelation`.`userId` = 2 AND `userRelation`.`followerId` != 2 ORDER BY `userRelation`.`id` DESC;
+2020-09-06 16:05:18: Executing (default): SELECT count(*) AS `count` FROM `atRelations` AS `atRelation` WHERE `atRelation`.`userId` = 2 AND `atRelation`.`isRead` = false;
+2020-09-06 16:05:18: Executing (default): SELECT `id`, `userId`, `blogId`, `isRead`, `createdAt`, `updatedAt` FROM `atRelations` AS `atRelation` WHERE `atRelation`.`userId` = 2 AND `atRelation`.`isRead` = false;
+2020-09-06 16:05:18:   --> GET /profile/zhangsan 200 30ms 8.22kb
+2020-09-06 16:05:18:   <-- GET /javascripts/query-object.js
+2020-09-06 16:05:18:   --> GET /javascripts/query-object.js 200 5ms 8.46kb
+2020-09-06 16:05:18:   <-- GET /test.png
+2020-09-06 16:05:18:   --> GET /test.png 200 3ms 36.11kb
+2020-09-06 16:05:19:   <-- GET /css/right.css
+2020-09-06 16:05:19:   --> GET /css/right.css 200 2ms 532b
+2020-09-06 16:05:19:   <-- GET /javascripts/jquery.atwho.js
+2020-09-06 16:05:19:   --> GET /javascripts/jquery.atwho.js 200 2ms 36.65kb
+2020-09-06 16:05:20:   <-- GET /api/user/getAtList
+2020-09-06 16:05:20: Executing (default): SELECT count(`userRelation`.`id`) AS `count` FROM `userRelations` AS `userRelation` LEFT OUTER JOIN `users` AS `user` ON `userRelation`.`followerId` = `user`.`id` WHERE `userRelation`.`userId` = 2 AND `userRelation`.`followerId` != 2;
+2020-09-06 16:05:20: Executing (default): SELECT `userRelation`.`id`, `userRelation`.`userId`, `userRelation`.`followerId`, `userRelation`.`createdAt`, `userRelation`.`updatedAt`, `user`.`id` AS `user.id`, `user`.`userName` AS `user.userName`, `user`.`nickName` AS `user.nickName`, `user`.`picture` AS `user.picture`, `user`.`city` AS `user.city` FROM `userRelations` AS `userRelation` LEFT OUTER JOIN `users` AS `user` ON `userRelation`.`followerId` = `user`.`id` WHERE `userRelation`.`userId` = 2 AND `userRelation`.`followerId` != 2 ORDER BY `userRelation`.`id` DESC;
+2020-09-06 16:05:20:   --> GET /api/user/getAtList 200 5ms 13b
+2020-09-06 16:05:25:   <-- GET /javascripts/my-ajax.js
+2020-09-06 16:05:25:   --> GET /javascripts/my-ajax.js 200 2ms 2.45kb
+2020-09-06 16:05:25:   <-- GET /javascripts/query-object.js
+2020-09-06 16:05:25:   --> GET /javascripts/query-object.js 200 2ms 8.46kb
+2020-09-06 16:05:27:   <-- GET /javascripts/my-ajax.js
+2020-09-06 16:05:27:   --> GET /javascripts/my-ajax.js 200 2ms 2.45kb

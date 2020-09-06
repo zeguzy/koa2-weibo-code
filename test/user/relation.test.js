@@ -67,4 +67,4 @@ test('zhangsan关注了里斯，张三的关注列表里面应该有里斯', asy
 //         .send({ followerId: ID_2 })
 //         .set('cookie', COOKIE_1)
 //     expect(res.body.errno).toBe(0)
-// })
+// })/

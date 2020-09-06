@@ -19,12 +19,12 @@ let
     MYSQL_CONF = {
         port: 6379,
         host: '127.0.0.1',
-        user:'root',
-        password:'123456',
-        database:'koa2_weibo_db'
+        user: 'root',
+        password: '123456',
+        database: 'koa2_weibo_db'
     }
 
-// console.log('isPrd...',isPrd)
+// console.log('isPrd...', isPrd)
 
 if (isPrd) {
     REDIS_CONF = {
@@ -35,9 +35,9 @@ if (isPrd) {
     MYSQL_CONF = {
         port: 6379,
         host: '127.0.0.1',
-        user:'root',
-        password:'159623',
-        database:'koa2_weibo_db'
+        user: 'root',
+        password: '123456',
+        database: 'koa2_weibo_db'
     }
 }
 
